@@ -6,13 +6,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './components';
+import { HeaderComponent, VideoCardComponent } from './components';
 import { SpinnerModule } from './modules';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
+    VideoCardComponent
   ],
   imports: [
     BrowserModule,

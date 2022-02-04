@@ -1,0 +1,21 @@
+<ng-container>
+  <div class="row">
+    <ng-container *ngFor="let video of [0,1,2,3,4,5]; let i = index">
+      <div class="card m-2" style="border-radius: 5px;">
+        <div class="card-body">
+          <div class="col">
+            <video controls style="border-radius: 10px;">
+              <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+              <!-- <source src="movie.ogg" type="video/ogg"> -->
+              Your browser does not support the video tag.
+            </video>
+            <button class="btn btn-outline-dark btn-sm m-1" style="border-radius: 5px;"> Buy</button>
+            <button class="btn btn-outline-dark btn-sm m-1" style="border-radius: 5px;"> Buy</button>
+            <button class="btn btn-outline-dark btn-sm m-1" style="border-radius: 5px;"> Buy</button>
+          </div>
+        </div>
+
+      </div>
+    </ng-container>
+  </div>
+</ng-container>
