@@ -1,2 +1,2 @@
-export * from './video-card/video-card.component';
+export * from './trending-videos/trending-videos.component';
 export * from './upload-video/upload-video.component';
