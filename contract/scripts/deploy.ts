@@ -2,12 +2,12 @@ import * as hre from "hardhat";
 
 async function main() {
 
-  const Greeter = await hre.ethers.getContractFactory("Greeter");
-  const greeter = await Greeter.deploy("Hello, Hardhat!");
+  const VideoStorage = await hre.ethers.getContractFactory("VideoStorage");
+  const videoStorage = await VideoStorage.deploy();
 
-  await greeter.deployed();
+  await videoStorage.deployed();
 
-  console.log("Greeter deployed to:", greeter.address);
+  console.log("Greeter deployed to:", videoStorage.address);
 }
 
 main()

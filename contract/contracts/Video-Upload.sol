@@ -2,7 +2,6 @@
 pragma solidity ^0.8.0;
 
 contract VideoStorage {
-    // string public name = "File Storage Contract";
     uint256 public videosCount = 0;
 
     mapping(address => Video[]) public videos;
