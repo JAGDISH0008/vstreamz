@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { UploadVideoComponent, VideoCardComponent } from './components';
 import { HeaderModule, SpinnerModule } from './modules';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +19,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     SpinnerModule,
-    HeaderModule
+    HeaderModule,
+    CarouselModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
