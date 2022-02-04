@@ -1,5 +1,9 @@
+import { AppService, IpfsService } from './../../services';
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { ToastrService } from 'ngx-toastr';
+declare const window: any;
+import { Buffer } from 'buffer';
 
 @Component({
   selector: "upload-video-card",
@@ -19,10 +23,16 @@ export class UploadVideoComponent {
     budget: new FormControl("", [Validators.required])
   })
 
-  constructor() { }
+  constructor(
+    public appService: AppService,
+    public ipfsService: IpfsService,
+    public toastr: ToastrService
+  ) { }
   submit() {
     this.onSubmit.emit(this.uploadVideoForm.value);
+    this.upload();
     this.uploadVideoForm.reset();
+
   }
   cancel() {
     this.uploadVideoForm.reset();
@@ -43,4 +53,20 @@ export class UploadVideoComponent {
       }
     }
   }
+  async upload() {
+    // this.fetchDetails();
+    if (this.appService.network?.name == 'maticmum') {
+      let ipfsData = await this.ipfsService.upload(this.teaserBuffer);
+      console.log(ipfsData);
+      this.toastr.success("File uploaded successfully to IPFS");
+      // this.appService.uploadToContract(ipfsData.cid.toString(), 'test.txt', ipfsData.size, 'text/plain', this.description).then(data => {
+      //   this.toastrService.success("Saved Hash to contract");
+      // }).catch(err => {
+      //   this.toastrService.error("Error saving hash to contract");
+      // }).finally(() => {
+      // })
+    }
+  }
+
+
 }
