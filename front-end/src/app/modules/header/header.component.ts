@@ -1,5 +1,5 @@
-import { Utils } from './../../utils/util';
-import { environment } from './../../../environments/environment';
+import { Utils } from '../../utils/util';
+import { environment } from '../../../environments/environment';
 import { Component } from "@angular/core";
 import { ToastrService } from "ngx-toastr";
 import { AppService } from "../../services";
@@ -11,6 +11,8 @@ declare const window: any;
   styleUrls: ["./header.component.scss"]
 })
 export class HeaderComponent {
+  public displayStyle = "none";
+
   public loading = false;
   public utils = new Utils();
 
@@ -44,6 +46,11 @@ export class HeaderComponent {
       }
       this.loading = false;
     });
+  }
+  openPopup() { this.displayStyle = "block"; }
+  closePopup() { this.displayStyle = "none"; }
+  OnSubmit($event: any) {
+    console.log($event);
   }
 
 }

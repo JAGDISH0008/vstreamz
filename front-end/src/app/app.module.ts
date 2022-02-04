@@ -2,17 +2,15 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent, VideoCardComponent } from './components';
-import { SpinnerModule } from './modules';
+import { UploadVideoComponent, VideoCardComponent } from './components';
+import { HeaderModule, SpinnerModule } from './modules';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
     VideoCardComponent
   ],
   imports: [
@@ -20,7 +18,8 @@ import { SpinnerModule } from './modules';
     AppRoutingModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    SpinnerModule
+    SpinnerModule,
+    HeaderModule
   ],
   providers: [],
   bootstrap: [AppComponent]
