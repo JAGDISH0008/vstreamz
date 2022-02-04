@@ -1,23 +1,22 @@
-<ng-container>
-  <div class="row">
-    <ng-container *ngFor="let video of [0,1,2,3,4,5]; let i = index">
-      <div class="card m-2" style="border-radius: 5px;">
-        <div class="card-body">
-          <div class="col">
-            <video controls style="border-radius: 10px;">
-              <source
-                src="https://ipfs.io/ipfs/QmfATQNSR2sbFAQwfgycZyzXqYcAT4TXPSeyyMTjekaUR9?fileName=QmfATQNSR2sbFAQwfgycZyzXqYcAT4TXPSeyyMTjekaUR9"
-                type="video/mp4">
-              <!-- <source src="movie.ogg" type="video/ogg"> -->
-              Your browser does not support the video tag.
-            </video>
-            <button class="btn btn-outline-dark btn-sm m-1" style="border-radius: 5px;"> Buy</button>
-            <button class="btn btn-outline-dark btn-sm m-1" style="border-radius: 5px;"> Buy</button>
-            <button class="btn btn-outline-dark btn-sm m-1" style="border-radius: 5px;"> Buy</button>
-          </div>
-        </div>
-
+<div class="row">
+  <h5>Trending Videos</h5>
+</div>
+<carousel [itemsPerSlide]="itemsPerSlide"
+          [singleSlideOffset]="singleSlideOffset"
+          [interval]="0"
+          [noWrap]="noWrap"
+          [showIndicators]="false">
+  <slide *ngFor="let video of videos; let index=index">
+    <div class="card" style="width: 21rem">
+      <div  style="height:200px">
+        <video controls=""  #videoEl (mouseenter)="playVideo(videoEl)" (mouseleave)="pauseVideo(videoEl)" [src]="video.src"
+        class="bs-card-video"></video>
       </div>
-    </ng-container>
-  </div>
-</ng-container>
+      <div class="card-body">
+        <h5 class="card-title">Video Title {{index}}</h5>
+        <p class="card-text">Description</p>
+        <a class="btn btn-md btn-secondary float-end">Buy</a>
+      </div>
+    </div>
+  </slide>
+</carousel>
