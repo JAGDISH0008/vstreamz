@@ -1,0 +1,16 @@
+<div class="row">
+  <h5>My Videos</h5>
+</div>
+<carousel [itemsPerSlide]="itemsPerSlide"
+          [singleSlideOffset]="singleSlideOffset"
+          [interval]="0"
+          [noWrap]="noWrap"
+          [showIndicators]="false">
+  <slide *ngFor="let video of videos; let index=index">
+    <div class="card" style="width: 21rem">
+      <div  style="height:200px">
+        <video controls="" [src]="video.src" class="bs-card-video"></video>
+      </div>
+    </div>
+  </slide>
+</carousel>

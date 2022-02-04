@@ -1,12 +1,12 @@
-import { Component, ElementRef, QueryList, ViewChild, ViewChildren } from "@angular/core";
-import { timeStamp } from "console";
+import { Component } from "@angular/core";
 
 @Component({
-  selector: "trending-videos",
-  templateUrl: "./trending-videos.component.html",
-  styleUrls: ["./trending-videos.component.scss"]
+  selector: 'my-videos',
+  templateUrl: './my-videos.component.html',
+  styleUrls: ['./my-videos.component.scss']
 })
-export class TrendingVideosComponent {
+
+export class MyVideosComponent{
   itemsPerSlide = 5;
   singleSlideOffset = true;
   noWrap = true;
