@@ -26,4 +26,18 @@ export class AppService {
       this.imageData = "data:image/png;base64," + this.imageData;
     }
   }
+  switchNetwork() {
+    let chainId = ethers.utils.hexlify(80001);
+    console.log(chainId);
+    if (this.network.chainId != 80001) {
+      window.ethereum.request({
+        method: "wallet_switchEthereumChain",
+        params: [
+          {
+            "chainId": chainId
+          }
+        ]
+      })
+    }
+  }
 }

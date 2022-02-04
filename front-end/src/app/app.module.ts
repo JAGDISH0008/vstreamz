@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components';
+import { SpinnerModule } from './modules';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { HeaderComponent } from './components';
     AppRoutingModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    SpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

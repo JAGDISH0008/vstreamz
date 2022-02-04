@@ -1,1 +1,6 @@
-<app-header></app-header>
+<ng-container *ngIf="loading; else app">
+  <spinner></spinner>
+</ng-container>
+<ng-template #app>
+  <app-header></app-header>
+</ng-template>

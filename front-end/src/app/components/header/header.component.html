@@ -30,9 +30,21 @@
         <a class="nav-link disabled">Link</a>
       </li>
     </ul>
-    <form class="d-flex">
-      <input class="form-control mr-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success" type="submit">Search</button>
-    </form>
+    <div class="nav-item">
+      <ng-container *ngIf="appService.accounts.length>0">
+        <span> {{appService.balance}} </span>
+        <i class="fas fa-wallet"></i>
+        <span> {{ utils.trim(appService.accounts[0],7) }}</span>
+        <img height="30" width="30" [src]="appService.imageData">
+      </ng-container>
+    </div>
+    <!-- <div class="nav-item">
+      <button *ngIf="appService.network?.name != 'maticmum'" class="btn btn-outline-primary"
+        (click)="appService.switchNetwork()"> Switch Network</button>
+    </div> -->
+    <div class="nav-item">
+      <button *ngIf="appService.accounts.length==0" class="btn btn-outline-primary" (click)="connectWallet()"> Connect
+        Wallet</button>
+    </div>
   </div>
 </nav>

@@ -17,15 +17,14 @@ export class AppComponent {
     private toastr: ToastrService,
     private appService: AppService
   ) {
-    this.toastr.success('Hello world!', 'Toastr fun!');
+    this.init();
   }
   init() {
     if (typeof window.ethereum == 'undefined') {
       this.toastr.info('Please install Metamask to continue');
     }
     else {
-      // this.fetchDetails();
-      // this.getFiles();
+      this.fetchDetails();
     }
   }
   async connectWallet() {
@@ -45,7 +44,7 @@ export class AppComponent {
     this.loading = true;
     this.appService.getWalletDetails().then(() => {
       if (this.appService.network?.chainId != environment.chainId) {
-        this.toastr.info('Please switch to Rinkeby test network');
+        this.toastr.info('Please switch to Polygon Mumbai test network');
       }
       this.loading = false;
     });
