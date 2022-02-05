@@ -3,6 +3,7 @@ pragma solidity ^0.8.0;
 
 contract VideoStorage {
     uint256 public videosCount = 0;
+    Video[] public allVideos;
 
     mapping(address => Video[]) public videos;
     mapping(address => VideoBought[]) public purchasedVideos;
@@ -74,6 +75,19 @@ contract VideoStorage {
                 block.timestamp
             )
         );
+        allVideos.push(
+            Video(
+                length,
+                _name,
+                _teaser_hash,
+                _video_hash,
+                _description,
+                payable(msg.sender),
+                _price,
+                block.timestamp,
+                block.timestamp
+            )
+        );
         videosCount++;
         emit VideoUploaded(
             length,
@@ -90,6 +104,10 @@ contract VideoStorage {
 
     function getMyUploadedVideos() public view returns (Video[] memory) {
         return videos[msg.sender];
+    }
+
+    function getAllVideos() public view returns (Video[] memory) {
+        return allVideos;
     }
 
     function findUploadedVideosById(address _owner)

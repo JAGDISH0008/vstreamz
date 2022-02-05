@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "compile": "npx hardhat compile",
     "node": "npx hardhat node",
-    "accounts": "npx hardhat accounts"
+    "accounts": "npx hardhat accounts",
+    "deploy": "npx hardhat run scripts/deploy.ts --network matic_mumbai"
   },
   "author": "",
   "license": "ISC",
