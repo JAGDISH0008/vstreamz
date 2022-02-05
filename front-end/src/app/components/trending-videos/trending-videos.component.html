@@ -1,22 +1,24 @@
-<div class="row">
-  <h5>Latest Videos</h5>
-</div>
-<carousel [itemsPerSlide]="itemsPerSlide"
-          [singleSlideOffset]="singleSlideOffset"
-          [interval]="0"
-          [noWrap]="noWrap"
-          [showIndicators]="false">
-  <slide *ngFor="let video of videos; let index=index">
-    <div class="card" style="width: 21rem">
-      <div  style="height:200px">
-        <video controls=""  #videoEl (mouseenter)="playVideo(videoEl)" (mouseleave)="pauseVideo(videoEl)" [src]="video.src"
-        class="bs-card-video"></video>
+<ng-container *ngIf="loading; else app">
+  <spinner></spinner>
+</ng-container>
+<ng-template #app>
+  <div class="row">
+    <h5>Latest Videos</h5>
+  </div>
+  <carousel [itemsPerSlide]="itemsPerSlide" [singleSlideOffset]="singleSlideOffset" [interval]="0" [noWrap]="noWrap"
+    [showIndicators]="false">
+    <slide *ngFor="let video of videos; let index=index">
+      <div class="card" style="width: 21rem">
+        <div style="height:200px">
+          <video controls="" #videoEl (mouseenter)="playVideo(videoEl)" (mouseleave)="pauseVideo(videoEl)"
+            [src]="'https://ipfs.io/ipfs/' + video[2] + '?fileName='+ video[2]" class="bs-card-video"></video>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Video Title {{index}}</h5>
+          <p class="card-text">Description</p>
+          <a class="btn btn-md btn-secondary float-end">Buy</a>
+        </div>
       </div>
-      <div class="card-body">
-        <h5 class="card-title">Video Title {{index}}</h5>
-        <p class="card-text">Description</p>
-        <a class="btn btn-md btn-secondary float-end">Buy</a>
-      </div>
-    </div>
-  </slide>
-</carousel>
+    </slide>
+  </carousel>
+</ng-template>

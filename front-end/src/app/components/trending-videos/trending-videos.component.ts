@@ -1,3 +1,4 @@
+import { VideoService } from './../../services';
 import { Component, ElementRef, QueryList, ViewChild, ViewChildren } from "@angular/core";
 import { timeStamp } from "console";
 
@@ -10,27 +11,26 @@ export class TrendingVideosComponent {
   itemsPerSlide = 5;
   singleSlideOffset = true;
   noWrap = true;
+  loading = false;
+  public videos = [];
 
-  constructor(){}
+  constructor(private videoService: VideoService) {
+    this.getTrendingVideos();
+  }
 
-  playVideo(video: HTMLVideoElement){
+  playVideo(video: HTMLVideoElement) {
     if (video) video.play();
   }
 
-  pauseVideo(video: HTMLVideoElement){
+  pauseVideo(video: HTMLVideoElement) {
     video.pause();
   }
- 
-  videos = [
-    {src: 'https://ipfs.io/ipfs/QmfATQNSR2sbFAQwfgycZyzXqYcAT4TXPSeyyMTjekaUR9?fileName=QmfATQNSR2sbFAQwfgycZyzXqYcAT4TXPSeyyMTjekaUR9'},
-    {src: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'},
-    {src: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4'},
-    {src: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4'},
-    {src: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4'},
-    {src: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4'},
-    {src: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4'},
-    {src: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4'},
-    {src: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4'},
-    {src: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4'}
-  ];
+
+  getTrendingVideos() {
+    this.loading = true;
+    this.videoService.getMyVideos().then(videos => {
+      this.videos = videos[0];
+      this.loading = false;
+    });
+  }
 }
