@@ -8,12 +8,14 @@
   <carousel [itemsPerSlide]="itemsPerSlide" [singleSlideOffset]="singleSlideOffset" [interval]="0" [noWrap]="noWrap"
     [showIndicators]="false">
     <slide *ngFor="let video of videos; let index=index">
-      <div class="card" style="width: 21rem">
-        <div style="height:200px">
-          <video controls="" [src]="'https://ipfs.io/ipfs/' + video[2] + '?fileName='+ video[2]"
-            class="bs-card-video"></video>
-        </div>
+      <div class="card">
+        <video controls="" [src]="'https://ipfs.io/ipfs/' + video[2] + '?fileName='+ video[2]" class="bs-card-video"
+          style="border-radius: 8px;"></video>
       </div>
+      <ng-container class="temp">
+
+      </ng-container>
+
     </slide>
   </carousel>
 </ng-template>
