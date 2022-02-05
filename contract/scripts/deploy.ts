@@ -7,7 +7,7 @@ async function main() {
 
   await videoStorage.deployed();
 
-  console.log("Greeter deployed to:", videoStorage.address);
+  console.log("Video Storage deployed to:", videoStorage.address);
 }
 
 main()

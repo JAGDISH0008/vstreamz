@@ -109,6 +109,7 @@ contract VideoStorage {
         require(ownerVideos[_index].owner != _owner);
         require(video.price <= msg.value);
         // VideoBought[] memory myPurchasedVideos = purchasedVideos[msg.sender];
+        payable(_owner).transfer(msg.value);
         uint256 length = purchasedVideos[msg.sender].length + 1;
         purchasedVideos[msg.sender].push(
             VideoBought(
