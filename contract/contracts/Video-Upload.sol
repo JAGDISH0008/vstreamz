@@ -1,5 +1,7 @@
 //SPDX-License-Identifier: Unlicense
 pragma solidity ^0.8.0;
+import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 contract VideoStorage {
     uint256 public videosCount = 0;
@@ -7,6 +9,7 @@ contract VideoStorage {
 
     mapping(address => Video[]) public videos;
     mapping(address => VideoBought[]) public purchasedVideos;
+    mapping(address => uint256) public balances;
 
     struct Video {
         uint256 id;
@@ -119,15 +122,26 @@ contract VideoStorage {
     }
 
     function buyVideo(uint256 _index, address _owner) public payable {
-        require(msg.sender != address(0));
-        require(msg.value > 0);
-        require(_index < videos[_owner].length);
+        require(msg.sender != address(0), "You can't buy video from 0x0");
+        require(msg.value > 0, "You can't buy video for 0 MATIC");
+        require(_index < videos[_owner].length, "Video index is out of range");
         Video[] memory ownerVideos = videos[_owner];
         Video memory video = ownerVideos[_index];
-        require(ownerVideos[_index].owner != _owner);
-        require(video.price <= msg.value);
+        require(
+            ownerVideos[_index].owner != _owner,
+            "You can't buy your own video"
+        );
+        require(
+            video.price <= msg.value,
+            "You can't buy video for more than it's price"
+        );
+        balances[_owner] += msg.value;
         // VideoBought[] memory myPurchasedVideos = purchasedVideos[msg.sender];
-        payable(_owner).transfer(msg.value);
+        uint256 amount = video.price;
+        address sender = msg.sender;
+        address owner = video.owner;
+        token.transfer(_owner, msg.value);
+        // payable(_owner).transfer(msg.value);
         uint256 length = purchasedVideos[msg.sender].length + 1;
         purchasedVideos[msg.sender].push(
             VideoBought(

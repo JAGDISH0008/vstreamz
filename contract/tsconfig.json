@@ -4,7 +4,10 @@
     "module": "commonjs",
     "strict": true,
     "esModuleInterop": true,
-    "outDir": "dist"
+    "outDir": "dist",
+    "paths": {
+      "@openzeppelin": ["./node_modules/@openzeppelin"]
+    }
   },
   "include": ["./scripts", "./test"],
   "files": ["./hardhat.config.ts"]

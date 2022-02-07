@@ -31,6 +31,11 @@ export class VideoService {
     let provider = new ethers.providers.Web3Provider(window.ethereum);
     let contract = new ethers.Contract(environment.address, abi.abi, provider.getSigner(this.appService.accounts[0]));
     return contract.functions.findUploadedVideosById(owner);
+  }
+  buyVideo(id, owner, price) {
+    let provider = new ethers.providers.Web3Provider(window.ethereum);
+    let contract = new ethers.Contract(environment.address, abi.abi, provider.getSigner(this.appService.accounts[0]));
+    return contract.functions.buyVideo(id, owner, { value: ethers.BigNumber.from(price.toString()) });
 
   }
 }

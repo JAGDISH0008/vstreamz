@@ -28,9 +28,18 @@ export class TrendingVideosComponent {
 
   getTrendingVideos() {
     this.loading = true;
-    this.videoService.getMyVideos().then(videos => {
+    this.videoService.getAllVideos().then(videos => {
       this.videos = videos[0];
+      console.log(this.videos);
       this.loading = false;
     });
+  }
+  buyVideo(id, owner, price) {
+    // console.log(id, owner);
+    this.videoService.buyVideo(id, owner, price).then(() => {
+      console.log("Video bought");
+    }).catch((err) => {
+      console.log(err);
+    })
   }
 }

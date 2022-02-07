@@ -10,12 +10,12 @@
     <slide *ngFor="let video of videos; let index=index">
       <div class="card">
         <video controls="" #videoEl (mouseenter)="playVideo(videoEl)" (mouseleave)="pauseVideo(videoEl)"
-          [src]="'https://ipfs.io/ipfs/' + video[2] + '?fileName='+ video[2]" class="bs-card-video"
+          [src]="'https://ipfs.io/ipfs/' + video?.teaser_hash + '?fileName='+ video?.teaser_hash" class="bs-card-video"
           style="border-radius: 8px;"></video>
         <div class="card-body">
-          <h5 class="card-title">Video Title {{index}}</h5>
-          <p class="card-text">Description</p>
-          <a class="btn btn-md btn-secondary float-end">Buy</a>
+          <h5 class="card-title">{{video?.teaser_hash}} {{video?.price}}</h5>
+          <p class="card-text">{{video?.description}}</p>
+          <button class="btn btn-sm btn-dark" (click)="buyVideo(video?.id,video?.owner,video?.price)"> Buy</button>
         </div>
       </div>
     </slide>
